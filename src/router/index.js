@@ -14,6 +14,10 @@ const router = createRouter({
         path: 'gallery',
         component: () => import('@/views/GalleryView.vue'),
       },
+      {
+        path: 'contact',
+        component: () => import('@/views/ContactView.vue'),
+      },
 
 
       ]
