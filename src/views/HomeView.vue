@@ -13,25 +13,23 @@
       </div>
     </div>
   </div>
-  <div id="workExperience" class="h-screen outline outline-1">
+  <div id="workExperience" class="relative h-screen outline outline-1">
     <div class="container mx-auto pt-20">
       <h1 class="mb-20">Work Experience</h1>
       <accordion-component></accordion-component>
-      
     </div>
   </div>
 </template>
 <script>
-import AccordionComponent from "@/components/AccordionComponent.vue";
+import AccordionComponent from '@/components/AccordionComponent.vue';
 
 export default {
-  components:{
-    AccordionComponent
+  components: {
+    AccordionComponent,
   },
   data() {
     return {};
   },
-  methods: {},
   mounted() {},
 };
 </script>
