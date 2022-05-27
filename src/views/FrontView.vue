@@ -2,7 +2,7 @@
   <div class="relative">
     <header-component></header-component>
     <RouterView />
-    <scrolltop-button ref="sttBtn" @click="scrollToTop" class="absolute right-8 bottom-8"></scrolltop-button>
+    <scrolltop-button ref="sttBtn" @click="scrollTop" class="absolute right-8 bottom-8"></scrolltop-button>
   </div>
 </template>
 <script >
@@ -14,8 +14,8 @@ export default {
     ScrolltopButton,
   },
   methods: {
-    scrollToTop() {
-      this.$refs.scrollToTop();
+    scrollTop() {
+      this.$refs.sttBtn.scrollToTop();
     },
   },
 };
