@@ -7,7 +7,7 @@
 </template>
 <script >
 import HeaderComponent from '@/components/HeaderComponent.vue';
-import ScrolltopButton from '@/components/ScrolltopButton.vue';
+import ScrolltopButton from '@/components/Button/ScrolltopButton.vue';
 export default {
   components: {
     HeaderComponent,
@@ -17,6 +17,9 @@ export default {
     scrollTop() {
       this.$refs.sttBtn.scrollToTop();
     },
+  },
+  mounted() {
+    
   },
 };
 </script>

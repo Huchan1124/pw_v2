@@ -11,6 +11,10 @@ const router = createRouter({
         component: () => import('@/views/HomeView.vue'),
       },
       {
+        path: 'about',
+        component: () => import('@/views/AboutView.vue'),
+      },
+      {
         path: 'gallery',
         component: () => import('@/views/GalleryView.vue'),
       },
@@ -24,6 +28,10 @@ const router = createRouter({
     },
 
   ]
+})
+
+router.afterEach((to, from, next) => {
+  window.scrollTo(0, 0);
 })
 
 export default router

@@ -16,7 +16,7 @@
 </template>
 <script>
 import SwiperComponent from '@/components/SwiperComponent.vue';
-import CategoryButton from '@/components/CategoryButton.vue';
+import CategoryButton from '@/components/Button/CategoryButton.vue';
 export default {
   components: {
     SwiperComponent,

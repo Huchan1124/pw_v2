@@ -5,7 +5,7 @@
 
       <div class="hidden md:flex justify-end text-center">
         <router-link to="/" class="w-20 h-10 leading-10">Home</router-link>
-        <a @click="ScrollTo('#about')" class="w-20 h-10 leading-10 cursor-pointer">About</a>
+        <router-link to="/about" class="w-20 h-10 leading-10 cursor-pointer">About</router-link>
         <router-link to="/gallery" class="w-20 h-10 leading-10">Gallery</router-link>
         <router-link to="/contact" class="w-20 h-10 leading-10">Contact</router-link>
       </div>
@@ -14,7 +14,7 @@
     <Transition>
       <div v-if="hamburgerMenuStatus" class="md:hidden bg-slate-100 text-center">
         <router-link to="/" class="block w-20 h-10 leading-10">Home</router-link>
-        <a  @click="ScrollTo('#about')" class="block w-20 h-10 leading-10 cursor-pointer">About</a>
+        <router-link to="/about" class="w-20 h-10 leading-10 cursor-pointer">About</router-link>
         <router-link to="/gallery" class="block w-20 h-10 leading-10">Gallery</router-link>
         <router-link to="/contact" class="block w-20 h-10 leading-10">Contact</router-link>
       </div>
@@ -33,9 +33,6 @@ export default {
   methods: {
     toggleHamburgerMenu(e) {
       this.hamburgerMenuStatus = !this.hamburgerMenuStatus;
-    },
-    ScrollTo(anchor) {
-      document.querySelector(anchor).scrollIntoView({ behavior: 'smooth' });
     },
   },
   mounted() {},
