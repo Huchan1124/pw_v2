@@ -1,4 +1,5 @@
 <template>
+ 
   <div id="about" class="h-screen outline outline-1">
     <div class="container mx-auto pt-20">
       <h1 class="mb-20">About</h1>
@@ -15,3 +16,10 @@
     </div>
   </div>
 </template>
+<script>
+</script>
+
+<style>
+
+
+</style>

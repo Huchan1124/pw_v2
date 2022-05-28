@@ -53,6 +53,14 @@ export default {
   },
   mounted() {
 
+    TweenMax.set(".distortion", { autoAlpha: 0 });
+    TweenMax.to(".distortion", 2, {
+      delay: 1.5,
+      autoAlpha: 1,
+   
+    });
+
+
     new hoverEffect({
       parent: document.querySelector('.distortion'),
       intensity1: 0.1,
@@ -62,7 +70,7 @@ export default {
       image2: './src/assets/images/01.jpg',
       imagesRatio: 1080 / 1920,
       displacementImage: './src/assets/images/watereffect.jpg',
-  
+
     });
     // this.autoplayHoverEffect()
   },
@@ -79,6 +87,7 @@ export default {
 .distortion {
   width: 100%;
   height: 50vh;
+  opacity: 0;
 
 }
 </style>
