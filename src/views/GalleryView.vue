@@ -7,7 +7,7 @@
     </div>
     <div>
       <div class="px-4">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div v-for="(index) in 9" class="h-60 border border-black rounded-lg">{{index}}</div>
         </div>
       </div>
