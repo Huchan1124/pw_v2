@@ -7,7 +7,7 @@
       <div class="marqueeText">
         <p class="rightToleft">私、これからも頑張るね！ 絶対、一緒にRAD WEEKENDを超えようね！</p>
       </div>
-      <img class="slogan absolute w-40 z-50" style="left:50vh;" src="../assets/images/slogan.png" alt="">
+      <img class="slogan absolute w-40 z-50" style="left:50vh;" src="/images/slogan.png" alt="">
       <div class="container mx-auto flex  items-center" style="height:60vh">
 
         <div id="hovereffect-section" class="distortion">
@@ -47,7 +47,7 @@ export default {
   },
   data() {
     return {
-    
+
     };
   },
   methods: {
@@ -69,10 +69,23 @@ export default {
     mainImgAnimation() {
       gsap.set([".distortion", ".slogan", ".rightToleft", ".leftToright"], { opacity: 0 });
 
-      gsap.to(".distortion", { duration: 2, delay: 1.5, opacity: 1 });
-      gsap.to(".slogan", { duration: 2.5, delay: 2, opacity: 1 });
-      gsap.to(".rightToleft ", { duration: 2.5, delay: 2.5, opacity: 1 });
-      gsap.to(".leftToright", { duration: 2.5, delay: 3, opacity: 1 });
+      gsap.to(".distortion", { duration: 2, delay: 1.5, opacity: 1, });
+      gsap.to(".slogan", { duration: 2.5, delay: 2, opacity: 1, });
+      gsap.to(".rightToleft ", { duration: 2.5, delay: 2.5, opacity: 1, });
+      gsap.to(".leftToright", { duration: 2.5, delay: 3, opacity: 1, });
+
+
+
+      setTimeout(() => {
+        gsap.set([".distortion", ".slogan", ".rightToleft", ".leftToright"], {
+          opacity: 1, onComplete: function () {
+            localStorage.setItem("hasMyAnimationPlayed", true);
+          }
+        });
+
+      }, 10000);
+
+
 
     },
     overlayAnimation() {
@@ -83,18 +96,53 @@ export default {
     }
   },
   mounted() {
+
+
+    var hasPlayed = localStorage.getItem("hasMyAnimationPlayed");
+
+    if (!hasPlayed) {
+
+
+      this.overlayAnimation()
+      this.mainImgAnimation()
+
+
+
+
+
+      new hoverEffect({
+        parent: document.querySelector('.distortion'),
+        intensity1: 0.1,
+        intensity2: 0.1,
+        angle2: Math.PI / 2,
+        image1: '/images/02.png',
+        image2: '/images/01.png',
+        imagesRatio: 1080 / 1920,
+        displacementImage: '/images/watereffect.jpg',
+
+      });
+
+
+    }
+
+
+
     this.overlayAnimation()
     this.mainImgAnimation()
+
+
+
+
 
     new hoverEffect({
       parent: document.querySelector('.distortion'),
       intensity1: 0.1,
       intensity2: 0.1,
       angle2: Math.PI / 2,
-      image1: './src/assets/images/02.png',
-      image2: './src/assets/images/01.png',
+      image1: '/images/02.png',
+      image2: '/images/01.png',
       imagesRatio: 1080 / 1920,
-      displacementImage: './src/assets/images/watereffect.jpg',
+      displacementImage: '/images/watereffect.jpg',
 
     });
 

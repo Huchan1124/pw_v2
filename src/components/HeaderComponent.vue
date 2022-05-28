@@ -7,9 +7,12 @@
 
       <div class="hidden md:flex justify-end text-center">
         <router-link to="/" class="underline-style  w-20 h-10 leading-10 mr-3 hover:text-pink-600">Home</router-link>
-        <router-link to="/about" class="underline-style  w-20 h-10 leading-10 cursor-pointer mr-3 hover:text-pink-600">About</router-link>
-        <router-link to="/gallery" class="underline-style w-20 h-10 leading-10 mr-3 hover:text-pink-600">Gallery</router-link>
-        <router-link to="/contact" class="underline-style w-20 h-10 leading-10 mr-3 hover:text-pink-600">Contact</router-link>
+        <router-link to="/about" class="underline-style  w-20 h-10 leading-10 cursor-pointer mr-3 hover:text-pink-600">
+          About</router-link>
+        <router-link to="/gallery" class="underline-style w-20 h-10 leading-10 mr-3 hover:text-pink-600">Gallery
+        </router-link>
+        <router-link to="/contact" class="underline-style w-20 h-10 leading-10 mr-3 hover:text-pink-600">Contact
+        </router-link>
       </div>
       <div @click="toggleHamburgerMenu" class="md:hidden w-10 h-10 outline outline-pink-500">Menu</div>
     </nav>
@@ -48,7 +51,7 @@ nav {
 }
 
 .underline-style {
-  background-image: linear-gradient(rgba(0 0 0 /0) 90% , #158dc3 70%);
+  background-image: linear-gradient(rgba(0 0 0 /0) 90%, #158dc3 70%);
 }
 
 
