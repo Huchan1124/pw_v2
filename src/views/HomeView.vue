@@ -1,5 +1,8 @@
 <template >
+  <overlay-component></overlay-component>
+
   <div class="pt-20 h-screen">
+
     <div class="relative">
       <div class="marqueeText">
         <p class="rightToleft">私、これからも頑張るね！ 絶対、一緒にRAD WEEKENDを超えようね！</p>
@@ -36,13 +39,16 @@
 </template>
 <script>
 import AccordionComponent from '@/components/AccordionComponent.vue';
-
+import OverlayComponent from '@/components/OverlayComponent.vue';
 export default {
   components: {
     AccordionComponent,
+    OverlayComponent,
   },
   data() {
-    return {};
+    return {
+      animationDone: false,
+    };
   },
   methods: {
     autoplayHoverEffect() {
@@ -59,41 +65,26 @@ export default {
           console.log('mouseleave')
         }, 5000);
       }, 10000);
-    }
+    },
+    mainImgAnimation() {
+      gsap.set([".distortion", ".slogan", ".rightToleft", ".leftToright"], { opacity: 0 });
 
+      gsap.to(".distortion", { duration: 2, delay: 1.5, opacity: 1 });
+      gsap.to(".slogan", { duration: 2.5, delay: 2, opacity: 1 });
+      gsap.to(".rightToleft ", { duration: 2.5, delay: 2.5, opacity: 1 });
+      gsap.to(".leftToright", { duration: 2.5, delay: 3, opacity: 1 });
+
+    },
+    overlayAnimation() {
+      gsap.to(".first", { duration: 1, delay: .2, left: '-100%', ease: Expo.easeInOut });
+      gsap.to(".second", { duration: 1, delay: .4, left: '-100%', ease: Expo.easeInOut });
+      gsap.to(".third", { duration: 1, delay: .5, left: '-100%', ease: Expo.easeInOut });
+      gsap.to(".fourth", { duration: 1, delay: .6, left: '-100%', ease: Expo.easeInOut });
+    }
   },
   mounted() {
-
-    TweenMax.set(".distortion", { autoAlpha: 0 });
-    TweenMax.set(".rightToleft", { autoAlpha: 0 });
-    TweenMax.set(".leftToright", { autoAlpha: 0 });
-    TweenMax.set(".slogan", { autoAlpha: 0 });
-
-    TweenMax.to(".distortion", 2, {
-      delay: 1.5,
-      autoAlpha: 1,
-
-    });
-
-    TweenMax.to(".slogan ", 2.5, {
-      delay: 2,
-      autoAlpha: 1,
-    });
-
-    TweenMax.to(".rightToleft ", 2.5, {
-      delay: 2.5,
-      autoAlpha: 1,
-
-    });
-
-    TweenMax.to(".leftToright ", 2.5, {
-      delay: 3,
-      autoAlpha: 1,
-    });
-
-
-
-
+    this.overlayAnimation()
+    this.mainImgAnimation()
 
     new hoverEffect({
       parent: document.querySelector('.distortion'),
@@ -106,11 +97,20 @@ export default {
       displacementImage: './src/assets/images/watereffect.jpg',
 
     });
-    this.autoplayHoverEffect()
+
+
+
+
+
+    // this.autoplayHoverEffect()
   },
 
 
 };
+
+
+
+
 
 
 </script>
