@@ -1,7 +1,10 @@
 <template >
   <div class="h-screen outline outline-1">
-    <div class="container mx-auto pt-20">
-      <h1>Hero Section</h1>
+    <div class="container mx-auto pt-20 h-screen flex  items-center">
+      <!-- <h1>Hero Section</h1> -->
+      <div id="hovereffect-section" class="distortion">
+
+      </div>
     </div>
   </div>
   <div id="about" class="h-screen outline outline-1">
@@ -30,10 +33,52 @@ export default {
   data() {
     return {};
   },
-  mounted() {},
+  methods: {
+    autoplayHoverEffect() {
+      const ev = new Event('mouseenter')
+      const ev2 = new Event('mouseleave')
+
+      const hes = document.getElementById('hovereffect-section')
+
+      setInterval(() => {
+        hes.dispatchEvent(ev)
+        console.log('mouseenter')
+        setTimeout(() => {
+          hes.dispatchEvent(ev2)
+          console.log('mouseleave')
+        }, 5000);
+      }, 10000);
+    }
+
+  },
+  mounted() {
+
+    new hoverEffect({
+      parent: document.querySelector('.distortion'),
+      intensity1: 0.1,
+      intensity2: 0.1,
+      angle2: Math.PI / 2,
+      image1: './src/assets/images/02.png',
+      image2: './src/assets/images/01.jpg',
+      imagesRatio: 1080 / 1920,
+      displacementImage: './src/assets/images/watereffect.jpg',
+  
+    });
+    // this.autoplayHoverEffect()
+  },
+
+
 };
+
+
 </script>
 
 <style>
 /* @import '@/assets/base.css'; */
+
+.distortion {
+  width: 100%;
+  height: 50vh;
+
+}
 </style>

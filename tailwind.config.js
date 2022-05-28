@@ -4,6 +4,13 @@ module.exports = {
     "./src/**/*.{vue,js,ts,jsx,tsx}",
   ],
   theme: {
+      container: {
+        // default breakpoints but with 40px removed
+        screens: {
+          xl: '1200px',
+          '2xl': '1200px',
+        },
+      },
     extend: {
       colors: {
         brown: {
