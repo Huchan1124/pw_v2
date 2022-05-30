@@ -10,28 +10,28 @@ const router = createRouter({
         path: '',
         component: () => import('@/views/HomeView.vue'),
         meta: {
-          keepAlive: true 
-      }
+          title: 'Home'
+      },
       },
       {
         path: 'about',
         component: () => import('@/views/AboutView.vue'),
         meta: {
-          keepAlive: true 
+          title: 'About'
       }
       },
       {
         path: 'gallery',
         component: () => import('@/views/GalleryView.vue'),
         meta: {
-          keepAlive: true 
+          title: 'Gallery'
       }
       },
       {
         path: 'contact',
         component: () => import('@/views/ContactView.vue'),
         meta: {
-          keepAlive: true 
+          title: 'Contact'
       }
       },
 
@@ -44,6 +44,8 @@ const router = createRouter({
 
 router.afterEach((to, from, next) => {
   window.scrollTo(0, 0);
+  document.title = `${to.meta.title}`;
+  next();
 
 
 })
