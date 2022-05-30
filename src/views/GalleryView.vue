@@ -1,6 +1,6 @@
 <template >
-  <div class="container mx-auto pt-20">
-    <swiper-component></swiper-component>
+  <div id="gallery" class="container mx-auto pt-20">
+    <swiper-component class="swiperComponent"></swiper-component>
     <h1 class="mb-20">Gallery</h1>
     <div class="mb-20 text-center">
       <category-button v-for="item in categories" :category-title="item"></category-button>
@@ -37,7 +37,7 @@ export default {
  
   },
   mounted() {
-
+     gsap.fromTo("#gallery", {opacity:0}, {opacity:1, duration: 1, delay: 2,});
 
   }
 };
