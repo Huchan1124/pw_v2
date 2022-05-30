@@ -57,21 +57,6 @@ export default {
       'showAnimation',
       'updateAnimationStatus',
     ]),
-    autoplayHoverEffect() {
-      const ev = new Event('mouseenter');
-      const ev2 = new Event('mouseleave');
-
-      const hes = document.getElementById('hovereffect-section');
-
-      setInterval(() => {
-        hes.dispatchEvent(ev);
-        console.log('mouseenter');
-        setTimeout(() => {
-          hes.dispatchEvent(ev2);
-          console.log('mouseleave');
-        }, 5000);
-      }, 10000);
-    },
     mainImgAnimation() {
       gsap.set(['.distortion', '.slogan', '.rightToleft', '.leftToright'], {
         opacity: 0,
@@ -81,15 +66,6 @@ export default {
       gsap.to('.slogan', { duration: 2.5, delay: 2, opacity: 1 });
       gsap.to('.rightToleft ', { duration: 2.5, delay: 2.5, opacity: 1 });
       gsap.to('.leftToright', { duration: 2.5, delay: 3, opacity: 1 });
-
-      setTimeout(() => {
-        gsap.set(['.distortion', '.slogan', '.rightToleft', '.leftToright'], {
-          opacity: 1,
-          onComplete: function() {
-            localStorage.setItem('hasMyAnimationPlayed', true);
-          },
-        });
-      }, 10000);
     },
     overlayAnimation() {
       gsap.to('.first', {
@@ -117,7 +93,7 @@ export default {
         ease: Expo.easeInOut,
       });
     },
-    hovereffectImg() {
+    hoverEffect() {
       new hoverEffect({
         parent: document.querySelector('.distortion'),
         intensity1: 0.1,
@@ -129,14 +105,28 @@ export default {
         displacementImage: '/images/watereffect.jpg',
       });
     },
+    autoplayHoverEffect() {
+      const ev = new Event('mouseenter');
+      const ev2 = new Event('mouseleave');
+
+      const hes = document.getElementById('hovereffect-section');
+
+      setInterval(() => {
+        hes.dispatchEvent(ev);
+        console.log('mouseenter');
+        setTimeout(() => {
+          hes.dispatchEvent(ev2);
+          console.log('mouseleave');
+        }, 5000);
+      }, 10000);
+    },
   },
   mounted() {
-    this.hovereffectImg();
+    this.hoverEffect();
 
     if (this.showAnimation) {
       this.overlayAnimation();
       this.mainImgAnimation();
-      // this.hovereffectImg();
       this.updateAnimationStatus();
     } else {
       gsap.set(['.distortion', '.slogan', '.rightToleft', '.leftToright'], {
