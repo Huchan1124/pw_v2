@@ -2,24 +2,18 @@
   <overlay-component></overlay-component>
 
   <div class="pt-20 h-screen">
-
     <div class="relative">
       <div class="marqueeText">
         <p class="rightToleft">私、これからも頑張るね！ 絶対、一緒にRAD WEEKENDを超えようね！</p>
       </div>
-      <img class="slogan absolute w-40 z-50" style="left:50vh;" src="/images/slogan.png" alt="">
-      <div class="container mx-auto flex  items-center" style="height:60vh">
-
-        <div id="hovereffect-section" class="distortion">
-
-
-        </div>
+      <img class="slogan absolute w-40 z-50" style="left:50vh;" src="/images/slogan.png" alt />
+      <div class="container mx-auto flex items-center" style="height:60vh">
+        <div id="hovereffect-section" class="distortion"></div>
       </div>
       <div class="marqueeText">
         <p class="leftToright">こはねの歌を聴くと、いつもドキドキして、 何か新しいことが始まりそうな気がしてくる</p>
       </div>
     </div>
-
   </div>
   <div id="about" class="h-screen outline outline-1">
     <div class="container mx-auto pt-20">
@@ -40,76 +34,90 @@
 <script>
 import AccordionComponent from '@/components/AccordionComponent.vue';
 import OverlayComponent from '@/components/OverlayComponent.vue';
+
+import { mapState, mapActions } from 'pinia';
+import animationStatusStore from '@/stores/animationStatus';
+
 export default {
   components: {
     AccordionComponent,
     OverlayComponent,
   },
   data() {
-    return {
-
-    };
+    return {};
+  },
+  computed: {
+    ...mapState(animationStatusStore, [
+      'showAnimation',
+      'updateAnimationStatus',
+    ]),
   },
   methods: {
+    ...mapActions(animationStatusStore, [
+      'showAnimation',
+      'updateAnimationStatus',
+    ]),
     autoplayHoverEffect() {
-      const ev = new Event('mouseenter')
-      const ev2 = new Event('mouseleave')
+      const ev = new Event('mouseenter');
+      const ev2 = new Event('mouseleave');
 
-      const hes = document.getElementById('hovereffect-section')
+      const hes = document.getElementById('hovereffect-section');
 
       setInterval(() => {
-        hes.dispatchEvent(ev)
-        console.log('mouseenter')
+        hes.dispatchEvent(ev);
+        console.log('mouseenter');
         setTimeout(() => {
-          hes.dispatchEvent(ev2)
-          console.log('mouseleave')
+          hes.dispatchEvent(ev2);
+          console.log('mouseleave');
         }, 5000);
       }, 10000);
     },
     mainImgAnimation() {
-      gsap.set([".distortion", ".slogan", ".rightToleft", ".leftToright"], { opacity: 0 });
+      gsap.set(['.distortion', '.slogan', '.rightToleft', '.leftToright'], {
+        opacity: 0,
+      });
 
-      gsap.to(".distortion", { duration: 2, delay: 1.5, opacity: 1, });
-      gsap.to(".slogan", { duration: 2.5, delay: 2, opacity: 1, });
-      gsap.to(".rightToleft ", { duration: 2.5, delay: 2.5, opacity: 1, });
-      gsap.to(".leftToright", { duration: 2.5, delay: 3, opacity: 1, });
-
-
+      gsap.to('.distortion', { duration: 2, delay: 1.5, opacity: 1 });
+      gsap.to('.slogan', { duration: 2.5, delay: 2, opacity: 1 });
+      gsap.to('.rightToleft ', { duration: 2.5, delay: 2.5, opacity: 1 });
+      gsap.to('.leftToright', { duration: 2.5, delay: 3, opacity: 1 });
 
       setTimeout(() => {
-        gsap.set([".distortion", ".slogan", ".rightToleft", ".leftToright"], {
-          opacity: 1, onComplete: function () {
-            localStorage.setItem("hasMyAnimationPlayed", true);
-          }
+        gsap.set(['.distortion', '.slogan', '.rightToleft', '.leftToright'], {
+          opacity: 1,
+          onComplete: function() {
+            localStorage.setItem('hasMyAnimationPlayed', true);
+          },
         });
-
       }, 10000);
-
-
-
     },
     overlayAnimation() {
-      gsap.to(".first", { duration: 1, delay: .2, left: '-100%', ease: Expo.easeInOut });
-      gsap.to(".second", { duration: 1, delay: .4, left: '-100%', ease: Expo.easeInOut });
-      gsap.to(".third", { duration: 1, delay: .5, left: '-100%', ease: Expo.easeInOut });
-      gsap.to(".fourth", { duration: 1, delay: .6, left: '-100%', ease: Expo.easeInOut });
-    }
-  },
-  mounted() {
-
-
-    var hasPlayed = localStorage.getItem("hasMyAnimationPlayed");
-
-    if (!hasPlayed) {
-
-
-      this.overlayAnimation()
-      this.mainImgAnimation()
-
-
-
-
-
+      gsap.to('.first', {
+        duration: 1,
+        delay: 0.2,
+        left: '-100%',
+        ease: Expo.easeInOut,
+      });
+      gsap.to('.second', {
+        duration: 1,
+        delay: 0.4,
+        left: '-100%',
+        ease: Expo.easeInOut,
+      });
+      gsap.to('.third', {
+        duration: 1,
+        delay: 0.5,
+        left: '-100%',
+        ease: Expo.easeInOut,
+      });
+      gsap.to('.fourth', {
+        duration: 1,
+        delay: 0.6,
+        left: '-100%',
+        ease: Expo.easeInOut,
+      });
+    },
+    hovereffectImg() {
       new hoverEffect({
         parent: document.querySelector('.distortion'),
         intensity1: 0.1,
@@ -119,53 +127,30 @@ export default {
         image2: '/images/01.png',
         imagesRatio: 1080 / 1920,
         displacementImage: '/images/watereffect.jpg',
-
       });
+    },
+  },
+  mounted() {
+    this.hovereffectImg();
 
-
+    if (this.showAnimation) {
+      this.overlayAnimation();
+      this.mainImgAnimation();
+      // this.hovereffectImg();
+      this.updateAnimationStatus();
+    } else {
+      gsap.set(['.distortion', '.slogan', '.rightToleft', '.leftToright'], {
+        opacity: 1,
+      });
+      this.overlayAnimation();
     }
-
-
-
-    this.overlayAnimation()
-    this.mainImgAnimation()
-
-
-
-
-
-    new hoverEffect({
-      parent: document.querySelector('.distortion'),
-      intensity1: 0.1,
-      intensity2: 0.1,
-      angle2: Math.PI / 2,
-      image1: '/images/02.png',
-      image2: '/images/01.png',
-      imagesRatio: 1080 / 1920,
-      displacementImage: '/images/watereffect.jpg',
-
-    });
-
-
-
-
-
     // this.autoplayHoverEffect()
   },
-
-
 };
-
-
-
-
-
-
 </script>
 
 <style lang="scss">
 /* @import '@/assets/base.css'; */
-
 
 .distortion {
   width: 100%;
@@ -175,7 +160,6 @@ export default {
   //  clip-path: polygon(25% 0%, 88% 9%, 100% 49%, 75% 100%, 25% 100%, 9% 48%);
   //  clip-path: polygon(28% 11%, 94% 2%, 100% 49%, 75% 100%, 13% 96%, 0 53%);
   clip-path: polygon(28% 11%, 94% 2%, 100% 49%, 75% 100%, 13% 96%, 5% 52%);
-
 }
 
 .marqueeText {
@@ -200,11 +184,8 @@ export default {
     width: fit-content;
     white-space: nowrap;
     font-size: 48px;
-
   }
-
 }
-
 
 @keyframes marqueeRtL {
   0% {
@@ -215,7 +196,6 @@ export default {
     transform: translateX(-100%);
   }
 }
-
 
 @keyframes marqueeLtR {
   0% {
