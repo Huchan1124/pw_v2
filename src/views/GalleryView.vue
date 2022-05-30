@@ -3,13 +3,16 @@
     <swiper-component class="swiperComponent"></swiper-component>
     <h1 class="mb-20">Gallery</h1>
     <div class="mb-20 text-center">
-      <category-button  v-for="(item,index) in categories"  :category-title="item"  @click="filterCategory(item)"
+      <category-button
+        v-for="(item,index) in categories"
+        :category-title="item"
+        @click="filterCategory(item)"
       ></category-button>
     </div>
     <div>
       <div class="px-4">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div v-for="(item) in temp" class="h-60 border border-black rounded-lg">{{ item }}</div>
+          <gallerycard-component v-for="(item) in temp" :card-title="item"></gallerycard-component>
         </div>
       </div>
     </div>
@@ -18,10 +21,12 @@
 <script>
 import SwiperComponent from '@/components/SwiperComponent.vue';
 import CategoryButton from '@/components/Button/CategoryButton.vue';
+import GallerycardComponent from '@/components/Card/GallerycardComponent.vue';
 export default {
   components: {
     SwiperComponent,
     CategoryButton,
+    GallerycardComponent,
   },
   data() {
     return {
@@ -100,8 +105,7 @@ export default {
 </script>
 
 <style>
-#gallery{
+#gallery {
   height: 200vh;
 }
-
 </style>
