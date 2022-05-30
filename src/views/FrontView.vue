@@ -1,9 +1,7 @@
 <template>
   <div class="relative">
     <header-component></header-component>
-    <keep-alive>
       <RouterView />
-    </keep-alive>
     <scrolltop-button ref="sttBtn" @click="scrollTop" class="absolute right-8 bottom-8"></scrolltop-button>
     <overlay-component></overlay-component>
 
